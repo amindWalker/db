@@ -51,6 +51,10 @@ SAVEPOINT link_type_id_6262023_22_57;
 -- Capitalize the first letter of the symbol values in the elements table
 UPDATE elements SET symbol = INITCAP(symbol);
 
+-- Adjust the data type of the atomic_mass column to TEXT and remove trailing zeros with regular expression
+ALTER TABLE properties ALTER COLUMN atomic_mass TYPE TEXT;
+UPDATE properties SET atomic_mass = regexp_replace(atomic_mass, '(\.\d*?)0*$', '\1');
+
 SAVEPOINT fix_type_and_column_6262023_22_58;
 
 -- Add the element with atomic number 9 (Fluorine) to the elements table
