@@ -4,11 +4,6 @@
     "cpus": 4
   },
   "waitFor": "onCreateCommand",
-  "updateContentCommand": "npm install",
-  "features": {
-    "github-cli": "latest"
-  },
-  "postCreateCommand": "/bin/bash ./.devcontainer/change_port_visibility.sh 3000 public",
   "forwardPorts": [
     3000,
     3001
@@ -19,6 +14,11 @@
       "onAutoForward": "openPreview"
     }
   },
+  "updateContentCommand": "npm install",
+  "features": {
+    "github-cli": "latest"
+  },
+  "postCreateCommand": "/bin/bash ./.devcontainer/port_visibility.sh 3000 public",
   "postAttachCommand": {
     "server": "npm start"
   }
