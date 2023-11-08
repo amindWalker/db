@@ -1,0 +1,32 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "hostRequirements": {
+      "cpus": 4
+    },
+    "waitFor": "onCreateCommand",
+    "forwardPorts": [
+      3000,
+      3001
+    ],
+    "portsAttributes": {
+      "3000": {
+        "label": "Main Application",
+        "onAutoForward": "openPreview"
+      }
+    },
+    "updateContentCommand": "npm install",
+    "features": {
+      "github-cli": "latest"
+    },
+    "postCreateCommand": "/bin/bash ./.devcontainer/port_visibility.sh 3000 public",
+    "postAttachCommand": {
+      "server": "npm start"
+    }
+    // "customizations": {
+    //   "codespaces": {
+    //     "openFiles": [
+    //       "index.js"
+    //     ]
+    //   }
+    // }
+  }
