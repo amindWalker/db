@@ -5,29 +5,28 @@
   },
   "waitFor": "onCreateCommand",
   "updateContentCommand": "npm install",
-  "postCreateCommand": "",
-  "postAttachCommand": {
-    "server": "npm start"
+  "features": {
+    "github-cli": "latest"
   },
-  "customizations": {
-    "codespaces": {
-      "openFiles": [
-        "index.js"
-      ]
-    }
-  },
+  "postCreateCommand": "/bin/bash ./.devcontainer/change_port_visibility.sh 3000 public",
+  "forwardPorts": [
+    3000,
+    3001
+  ],
   "portsAttributes": {
     "3000": {
-      "label": "Application",
+      "label": "Main Application",
       "onAutoForward": "openPreview"
     }
   },
-  "settings": {
-    "forwardPorts": [
-      {
-        "localPort": 3000,
-        "publicPort": 3000
-      }
-    ]
+  "postAttachCommand": {
+    "server": "npm start"
   }
+  // "customizations": {
+  //   "codespaces": {
+  //     "openFiles": [
+  //       "index.js"
+  //     ]
+  //   }
+  // }
 }
